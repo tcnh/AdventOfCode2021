@@ -13,7 +13,7 @@ fun main() {
     println(growFishes(80))
 
     //Part2 .. Goes out of memory when keeping track of all the little fishes. Just count the process
-    val fishArray = arrayOf<Long>(0,0,0,0,0,0,0,0,0)
+    val fishArray = LongArray(9)
 
     day6input.split(",").map { it.toInt() }.forEach {
         fishArray[it] = fishArray[it].plus(1)
