@@ -44,7 +44,7 @@ fun growFishes(days: Int): Double {
     return schoolOfLanternFish.size.toDouble()
 }
 
-class LanternFish(var timer: Int = 8) {
+class LanternFish(private var timer: Int = 8) {
     fun nextDay() {
         timer = if (timer - 1 < 0) {
             schoolOfLanternFish += LanternFish()
