@@ -48,8 +48,7 @@ fun decode(input: List<String>): Map<Int, Char> {
     segments[1] = four.minus(segments.values.toSet()).minus(one).first()
 
     // In the five segment digits, the one that has 1, reveals 5 (now the only unknown)
-    segments[5] = fiveSegmentDigits.filter { it.contains(segments[1]) }[0]
-        .minus(listOf(segments[0], segments[1], segments[3], segments[6]).toSet()).first()!!
+    segments[5] = fiveSegmentDigits.first { it.contains(segments[1]) }.minus(segments.values.toSet()).first()
 
     // 2 is found by removing 5 from the segments in one
     segments[2] = one.minus(segments[5]).first()!!
