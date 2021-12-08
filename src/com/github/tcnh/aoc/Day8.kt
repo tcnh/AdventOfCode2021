@@ -36,23 +36,23 @@ fun decode(input: List<String>): Map<Int, Char> {
     val intersects = fiveSegmentDigits[0].intersect(fiveSegmentDigits[1]).intersect(fiveSegmentDigits[2])
 
     // The one in four is 3
-    segments[3] = intersects.intersect(four).first().toChar()
+    segments[3] = intersects.intersect(four).first()
 
     // The one in 7 is 0
-    segments[0] = intersects.intersect(seven).first().toChar()
+    segments[0] = intersects.intersect(seven).first()
 
     // that leaves one option for 6
-    segments[6] = intersects.minus(listOf(segments[0], segments[3]).toSet()).first()!!.toChar()
+    segments[6] = intersects.minus(listOf(segments[0], segments[3]).toSet()).first()!!
 
     // Remove 0,3,6 from four, remove one, the remaining is 1
     segments[1] = four.minus(segments.values.toSet()).minus(one).first()
 
     // In the five segment digits, the one that has 1, reveals 5 (now the only unknown)
     segments[5] = fiveSegmentDigits.filter { it.contains(segments[1]) }[0]
-        .minus(listOf(segments[0], segments[1], segments[3], segments[6]).toSet()).first()!!.toChar()
+        .minus(listOf(segments[0], segments[1], segments[3], segments[6]).toSet()).first()!!
 
     // 2 is found by removing 5 from the segments in one
-    segments[2] = one.minus(segments[5]).first()!!.toChar()
+    segments[2] = one.minus(segments[5]).first()!!
 
     // Now the remaining segment is 4
     segments[4] = setOf('a', 'b', 'c', 'd', 'e', 'f', 'g').minus(segments.values.toSet()).first()
