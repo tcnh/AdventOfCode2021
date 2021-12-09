@@ -11,27 +11,17 @@ fun main() {
                 day9inputs += Pair(x, y) to height.toInt()
             }
         }
-        day9Part1()
-        day9Part2()
+    day9Part1()
+    day9Part2()
 }
 
 private fun day9Part1() {
-    var sumOfRisk = 0
-    day9inputs.keys.forEach {
-        if (adjacentAreLower(it)) {
-            sumOfRisk += day9inputs[it]?.plus(1)!!
-        }
-    }
-    println(sumOfRisk)
+    println(day9inputs.keys.filter{ adjacentAreLower(it) }.sumOf { day9inputs[it]!!+1 })
 }
 
 private fun day9Part2() {
     val basins = mutableListOf<Int>()
-    day9inputs.keys.forEach {
-        if (adjacentAreLower(it)) {
-            basins.add(findBasinSize(it))
-        }
-    }
+    day9inputs.keys.filter{adjacentAreLower(it)}.mapTo(basins) { findBasinSize(it) }
     basins.sort()
     println(basins.takeLast(3).reduce { acc, i -> acc * i })
 }
