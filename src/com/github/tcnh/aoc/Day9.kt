@@ -7,11 +7,10 @@ val day9inputs = mutableMapOf<Pair<Int, Int>, Int>()
 fun main() {
     File("input_day9").readLines()
         .forEachIndexed { y, line ->
-            line.split("(?!^)".toRegex()).forEachIndexed { x, height ->
-                if (height.isNotEmpty()) day9inputs += Pair(x, y) to height.toInt()
+            line.split("(?!^)".toRegex()).filter{ it.isNotEmpty() }.forEachIndexed { x, height ->
+                day9inputs += Pair(x, y) to height.toInt()
             }
         }
-
     day9Part1()
     day9Part2()
 }
@@ -42,11 +41,10 @@ fun adjacentAreLower(position: Pair<Int, Int>): Boolean {
 }
 
 fun findBasinSize(position: Pair<Int, Int>, counted: MutableSet<Pair<Int, Int>> = mutableSetOf(position)): Int {
-    adjacentPositions(position).filter {
-        day9inputs.getOrDefault(it, 9) in (day9inputs[position]!! + 1)..8
-    }.forEach {
-        counted.add(it)
-        findBasinSize(it, counted)
+    adjacentPositions(position).filter { day9inputs.getOrDefault(it, 9) in (day9inputs[position]!! + 1)..8 }
+        .forEach {
+            counted.add(it)
+            findBasinSize(it, counted)
     }
     return counted.size
 }
