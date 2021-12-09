@@ -11,8 +11,8 @@ fun main() {
                 day9inputs += Pair(x, y) to height.toInt()
             }
         }
-    day9Part1()
-    day9Part2()
+        day9Part1()
+        day9Part2()
 }
 
 private fun day9Part1() {
