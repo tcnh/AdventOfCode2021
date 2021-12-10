@@ -6,11 +6,10 @@ val day9inputs = mutableMapOf<Pair<Int, Int>, Int>()
 
 fun main() {
     File("input_day9").readLines()
-        .forEachIndexed { y, line ->
-            line.split("(?!^)".toRegex()).filter{ it.isNotEmpty() }.forEachIndexed { x, height ->
-                day9inputs += Pair(x, y) to height.toInt()
-            }
+        .forEachIndexed { y, line -> line.split("(?!^)".toRegex()).filter{ it.isNotEmpty() }
+            .forEachIndexed { x, height -> day9inputs += Pair(x, y) to height.toInt() }
         }
+
     day9Part1()
     day9Part2()
 }
