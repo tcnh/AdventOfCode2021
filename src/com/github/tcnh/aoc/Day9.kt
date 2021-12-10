@@ -20,10 +20,7 @@ private fun day9Part1() {
 }
 
 private fun day9Part2() {
-    val basins = mutableListOf<Int>()
-    day9inputs.keys.filter{adjacentAreLower(it)}.mapTo(basins) { findBasinSize(it) }
-    basins.sort()
-    println(basins.takeLast(3).reduce { acc, i -> acc * i })
+    println(day9inputs.keys.filter{adjacentAreLower(it)}.map { findBasinSize(it) }.sorted().takeLast(3).reduce { acc, i -> acc * i })
 }
 
 fun adjacentAreLower(position: Pair<Int, Int>): Boolean {
